@@ -1,7 +1,7 @@
 # ZXingCodeDemo
 
 #（Android）一个关于二维码扫描的Demo
-[![](https://jitpack.io/v/maning0303/MNZXingCode.svg)](https://jitpack.io/#maning0303/MNZXingCode)
+[![](https://jitpack.io/v/tianqiujie/MNZXingCode.svg)](https://jitpack.io/#tianqiujie/MNZXingCode)
 
 ## 功能：
     1：生成二维码（带Logo）
@@ -30,7 +30,7 @@
 #### 2.在Module目录下的build.gradle中添加依赖
 ``` gradle
 	dependencies {
-	     compile 'com.github.maning0303:MNZXingCode:V1.0.5'
+	      compile 'com.github.tianqiujie:MNZXingCode:V1.0.6'
 	}
 ```
 
