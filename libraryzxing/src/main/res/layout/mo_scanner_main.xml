@@ -38,7 +38,7 @@
             android:layout_height="3dp"
             android:layout_alignParentTop="true"
             android:layout_margin="10dp"
-            android:src="#e44e4e" />
+            android:src="#32cd32" />
     </RelativeLayout>
 
     <ImageView
