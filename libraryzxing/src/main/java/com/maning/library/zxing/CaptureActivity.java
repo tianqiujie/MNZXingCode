@@ -7,9 +7,11 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +21,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -38,7 +41,9 @@ import com.maning.library.zxing.utils.ZXingUtils;
 import com.maning.library.zxing.view.ViewfinderView;
 import com.maning.libraryzxing.R;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Vector;
 
 
@@ -175,11 +180,7 @@ public class CaptureActivity extends Activity implements Callback, OnClickListen
 
     private void photo() {
         Intent innerIntent = new Intent();
-        if (Build.VERSION.SDK_INT < 19) {
-            innerIntent.setAction(Intent.ACTION_GET_CONTENT);
-        } else {
-            innerIntent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        }
+        innerIntent.setAction(Intent.ACTION_PICK);
         innerIntent.setType("image/*");
         Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
         startActivityForResult(wrapperIntent, ZXingConstants.ScanPhotosRequestCode);
@@ -201,6 +202,7 @@ public class CaptureActivity extends Activity implements Callback, OnClickListen
                         }
                         cursor.close();
                     }
+
                     //解析图片
                     analysisImage(photo_path);
                     break;
